@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Population</title>
+    <title>Import-Export</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
   <body>
@@ -35,29 +35,38 @@
         var e = document.getElementById("select");
         var value = e.options[e.selectedIndex].value;
         var text = e.options[e.selectedIndex].text;
-        const globalTemps = await getData(text);
+        const globalTemps = await getData1(text);
+        // const globalexp = await getData2(text);
         const myChart = new Chart(ctx, {
-          type: 'line',
+          type: 'bar',
           data: {
             labels: globalTemps.years,
             datasets: [
               {
-                label: 'Population',
+                label: 'Imports',
                 data: globalTemps.temps,
                 fill: false,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderWidth: 1
-              }
+              },
+              // {
+              //   label: 'Exports',
+              //   data: globalexp.temps,
+              //   fill: false,
+              //   borderColor: 'rgba(255, 99, 132, 1)',
+              //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
+              //   borderWidth: 1
+              // }
             ]
           },
           options: {}
         });
       }
 
-      async function getData(text) {
+      async function getData1(text) {
         // const response = await fetch('testdata.csv');
-        const response = await fetch('population_country_yearwise.csv');
+        const response = await fetch('export_data.csv');
         const data = await response.text();
         const years = [];
         const temps = [];
@@ -68,16 +77,19 @@
         rows.forEach(row => {
           const cols = row.split(',');
           // alert(cols[2]);
-          if(cols[0]>1990 && cols[0]<2020 && cols[2].trim() == text.trim()){
-            years.push(cols[0]);
-            temps.push(parseFloat(cols[1]/100));
+          if(cols[1]>1999 && cols[1]<2014 && cols[0].trim() == text.trim()){
+                  if(years[1]!=cols[1]){
+                    years.push(cols[1]);
+              }
+            temps.push(parseFloat(cols[2]));
           } 
-          countries.push(cols[2]); 
+          countries.push(cols[0]); 
         });
        
         var filteredArray = countries.filter(function(item, pos){
         return countries.indexOf(item)== pos; 
       });
+      console.log(filteredArray);
        addoptions(filteredArray); 
         return { years, temps };
        
