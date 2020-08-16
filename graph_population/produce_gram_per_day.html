@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
   <body>
-    <h1>Population</h1>
+    <h1>Eggs produced per year</h1>
     <canvas id="myChart" width="400" height="200"></canvas>
     <select id="select" onchange="setup()">
       <option value="default">Afghanistan</option>
@@ -42,7 +42,7 @@
             labels: globalTemps.years,
             datasets: [
               {
-                label: 'USD/tonne',
+                label: 'tonne/year',
                 data: globalTemps.temps,
                 fill: false,
                 borderColor: 'rgba(255, 99, 132, 1)',
