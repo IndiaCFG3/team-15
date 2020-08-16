@@ -7,13 +7,14 @@
     <title>Coding Train: Data and APIs Project 1</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
-  <body>
-    <h1>Population</h1>
-    <canvas id="myChart" width="400" height="200"></canvas>
-    <select id="select" onchange="setup()">
+  <body style="padding: 20px">
+    <h1 style="background-color:rgb(253, 208, 253); text-align: center; padding:10px ">Population</h1>
+    <select id="select" onchange="setup()" style="color:black; background-color: rgb(240,240,240); margin:20px; align-self: center; padding:10px 20px; border:0px; border-radius: 30px; font-size: 20px; ">
       <option value="default">Afghanistan</option>
     </select>
+    <canvas id="myChart" >
     <script>
+      
       function addoptions(filteredArray){
         var e = document.getElementById("select");
              for(var i = 0; i < filteredArray.length; i++)
@@ -83,5 +84,6 @@
        
       }
     </script>
+    </canvas>
   </body>
 </html>
