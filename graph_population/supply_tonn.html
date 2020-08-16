@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Population</title>
+    <title>Coding Train: Data and APIs Project 1</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
   <body>
-    <h1>Population</h1>
+    <h1>Supply in tonnes</h1>
     <canvas id="myChart" width="400" height="200"></canvas>
     <select id="select" onchange="setup()">
       <option value="default">Afghanistan</option>
@@ -42,7 +42,7 @@
             labels: globalTemps.years,
             datasets: [
               {
-                label: 'Population',
+                label: 'SupplyTonnes',
                 data: globalTemps.temps,
                 fill: false,
                 borderColor: 'rgba(255, 99, 132, 1)',
@@ -57,7 +57,7 @@
 
       async function getData(text) {
         // const response = await fetch('testdata.csv');
-        const response = await fetch('population_country_yearwise.csv');
+        const response = await fetch('supply_tonnes_protein.csv');
         const data = await response.text();
         const years = [];
         const temps = [];
@@ -68,11 +68,11 @@
         rows.forEach(row => {
           const cols = row.split(',');
           // alert(cols[2]);
-          if(cols[0]>1990 && cols[0]<2020 && cols[2].trim() == text.trim()){
-            years.push(cols[0]);
-            temps.push(parseFloat(cols[1]/100));
+          if(cols[1]>1990 && cols[1]<2020 && cols[0].trim() == text.trim()){
+            years.push(cols[1]);
+            temps.push(parseFloat(cols[3]/100));
           } 
-          countries.push(cols[2]); 
+          countries.push(cols[0]); 
         });
        
         var filteredArray = countries.filter(function(item, pos){
