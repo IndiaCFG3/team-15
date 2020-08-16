@@ -7,12 +7,14 @@
     <title>Coding Train: Data and APIs Project 1</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
-  <body>
-    <h1>Supply in tonnes</h1>
-    <canvas id="myChart" width="400" height="200"></canvas>
-    <select id="select" onchange="setup()">
+  <body style="padding: 0px 60px">
+    <h1 style="background-color:rgb(253, 208, 253); text-align: center; padding:10px ">Supply in tonnes</h1>
+    <select id="select" onchange="setup()" style="color:black; background-color: rgb(240,240,240); margin:20px; align-self: center; padding:10px 20px; border:0px; border-radius: 30px; font-size: 20px; ">
       <option value="default">Afghanistan</option>
     </select>
+    <div style="height: 500px; width: 900px">
+    <canvas id="myChart" width="400" height="200">
+    
     <script>
       function addoptions(filteredArray){
         var e = document.getElementById("select");
@@ -42,7 +44,7 @@
             labels: globalTemps.years,
             datasets: [
               {
-                label: 'SupplyTonnes',
+                label: 'Supply in Tonnes',
                 data: globalTemps.temps,
                 fill: false,
                 borderColor: 'rgba(255, 99, 132, 1)',
@@ -83,5 +85,7 @@
        
       }
     </script>
+    </canvas>
+  </div>
   </body>
 </html>

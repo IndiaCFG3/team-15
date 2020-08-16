@@ -7,11 +7,12 @@
     <title>Coding Train: Data and APIs Project 1</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
-  <body style="padding: 20px">
+  <body style="padding: 0px 60px">
     <h1 style="background-color:rgb(253, 208, 253); text-align: center; padding:10px ">Population</h1>
     <select id="select" onchange="setup()" style="color:black; background-color: rgb(240,240,240); margin:20px; align-self: center; padding:10px 20px; border:0px; border-radius: 30px; font-size: 20px; ">
       <option value="default">Afghanistan</option>
     </select>
+    <div style="height: 500px; width: 900px">
     <canvas id="myChart" >
     <script>
       
@@ -26,9 +27,6 @@
                  select.insertBefore(option,select.lastChild);
              }
       }
-    // function convert(e){
-    //   console.log(e.target.value);
-    // }
       window.addEventListener('load', setup);
 
       async function setup() {
@@ -85,5 +83,6 @@
       }
     </script>
     </canvas>
+  </div>
   </body>
 </html>
