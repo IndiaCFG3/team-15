@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Malnutrition</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body style="padding: 20px">
+    <h1 style="background-color:rgb(253, 208, 253); text-align: center; padding:10px ">Malnutrition</h1>
+    <select id="select" onchange="setup()" style="color:black; background-color: rgb(240,240,240); margin:20px; align-self: center; padding:10px 20px; border:0px; border-radius: 30px; font-size: 20px; ">
+      <option value="default">AFGHANISTAN</option>
+    </select>
+    <canvas id="myChart" >
+    <script>
+      
+      function addoptions(filteredArray){
+        var e = document.getElementById("select");
+             for(var i = 0; i < filteredArray.length; i++)
+             {
+                 var option = document.createElement("OPTION"),
+                 txt = document.createTextNode(filteredArray[i]);
+                 option.appendChild(txt);
+                 option.setAttribute("value",filteredArray[i]);
+                 select.insertBefore(option,select.lastChild);
+             }
+      }
+    // function convert(e){
+    //   console.log(e.target.value);
+    // }
+      window.addEventListener('load', setup);
+
+      async function setup() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        var e = document.getElementById("select");
+        var value = e.options[e.selectedIndex].value;
+        var text = e.options[e.selectedIndex].text;
+        let labels=['Severe Wasting','Wasting','Overeweight','Stunting','Underweight'];
+        let colors=['#FB3640', '#EFCA08', '#43AA8B', '#253D5B','#ff0000'];
+        const globalTemps = await getData(text);
+        const myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+       datasets: [
+        {
+      data: [globalTemps.sevwaste[0],globalTemps.sevwaste[1],globalTemps.sevwaste[2],globalTemps.sevwaste[3],globalTemps.sevwaste[4]],
+      backgroundColor: colors
+        }
+      ],
+    labels: labels
+          },
+          options: {}
+        });
+      }
+
+      async function getData(text) {
+        // const response = await fetch('testdata.csv');
+        const response = await fetch('malnutrition_for_pie_chart.csv');
+        const data = await response.text();
+        const sevwaste=[] ;
+        const countries =[];
+        // text.trim();
+        const rows = data.split('\n').slice(1);
+        rows.forEach(row => {
+          const cols = row.split(',');
+          if(cols[0].trim() == text.trim()){
+            var sum = cols[1]+cols[2]+cols[3]+cols[4]+cols[5];
+            // // alert(cols[1]);
+            
+
+            sevwaste.push(cols[1]);
+            sevwaste.push(cols[2]);
+            sevwaste.push(cols[3]);
+            sevwaste.push(cols[4]);
+            sevwaste.push(cols[5]);
+            
+          } 
+          countries.push(cols[0]); 
+        });
+       
+        var filteredArray = countries.filter(function(item, pos){
+        return countries.indexOf(item)== pos; 
+      });
+      
+       addoptions(filteredArray); 
+        return {sevwaste};
+       
+      }
+    </script>
+    </canvas>
+  </body>
+</html>
