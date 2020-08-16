@@ -4,3 +4,6 @@ Team*.zip
 *.crt
 *.key
 *.ovpn
+data/population_country_yearwise/*xlsx
+data/population_country_yearwise/*csv
+data/population_country_yearwise/*json
