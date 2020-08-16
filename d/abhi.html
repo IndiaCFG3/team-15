@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script type="text/javascript">
+window.onload = function () {
+
+
+
+var chart1 = new CanvasJS.Chart("chartContainer1", {
+  theme: "dark2",
+  animationEnabled: true,
+  title:{
+    text: "Plastic Disposal Methods"
+  },
+  axisX:{
+    title: "Years",
+    minimum: -0.02,
+    maximum: 15.02
+  },
+  axisY:{
+    title:"Percentage"
+  },
+  toolTip:{
+    shared: true
+  },
+  data: [{
+    type: "stackedArea100",
+    name: "Discarded",
+    showInLegend: "true",
+    dataPoints: [
+      { y: 76 , label: "2000" },
+            { y: 74.6 , label: "2001" },
+            { y: 73.2 , label: "2002" },
+            { y: 71.8 , label: "2003" },
+            { y: 70.4 , label: "2004" },
+            { y: 69 , label: "2005" },
+            { y: 67.6 , label: "2006" },
+            { y: 66.2 , label: "2007" },
+            { y: 64.8 , label: "2008" },
+            { y: 63.4 , label: "2009" },
+            { y: 62 , label: "2010" },
+            { y: 60.6 , label: "2011" },
+            { y: 59.2 , label: "2012" },
+            { y: 57.8 , label: "2013" },
+            { y: 56.4 , label: "2014" },
+            { y: 55 , label: "2015" }
+    ]
+  },
+  {
+    type: "stackedArea100",
+    name: "Incinerated",
+    showInLegend: "true",
+    dataPoints: [
+      { y: 15 , label: "2000" },
+            { y: 15.7 , label: "2001" },
+            { y: 16.4 , label: "2002" },
+            { y: 17.1 , label: "2003" },
+            { y: 17.8 , label: "2004" },
+            { y: 18.5 , label: "2005" },
+            { y: 19.2 , label: "2006" },
+            { y: 19.9 , label: "2007" },
+            { y: 20.6 , label: "2008" },
+            { y: 21.3 , label: "2009" },
+            { y: 22 , label: "2010" },
+            { y: 22.7 , label: "2011" },
+            { y: 23.4 , label: "2012" },
+            { y: 24.1 , label: "2013" },
+            { y: 24.8 , label: "2014" },
+            { y: 25.5 , label: "2015" }
+    ]
+  },
+  {
+    type: "stackedArea100",
+    name: "Recycled",
+    showInLegend: "true",
+    dataPoints: [
+      { y: 9 , label: "2000" },
+            { y: 9.7 , label: "2001" },
+            { y: 10.4 , label: "2002" },
+            { y: 11.1 , label: "2003" },
+            { y: 11.8 , label: "2004" },
+            { y: 12.5 , label: "2005" },
+            { y: 13.2 , label: "2006" },
+            { y: 13.9 , label: "2007" },
+            { y: 14.6 , label: "2008" },
+            { y: 15.3 , label: "2009" },
+            { y: 16 , label: "2010" },
+            { y: 16.7 , label: "2011" },
+            { y: 17.4 , label: "2012" },
+            { y: 18.1 , label: "2013" },
+            { y: 18.8 , label: "2014" },
+            { y: 19.5 , label: "2015" }
+    ]
+  }]
+});
+
+chart1.render();
+
+
+
+var chart5 = new CanvasJS.Chart("chartContainer5", {
+  theme: "dark2",
+    animationEnabled: true,
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    title:{
+        text: "Surface Plastic Mass By Ocean in 2015"
+    },
+    axisY: {
+        title: "Plastic mass(tonnes)"
+    },
+    data: [{        
+        type: "column",  
+        showInLegend: true, 
+        legendMarkerColor: "grey",
+        dataPoints: [      
+            { y: 268950, label: "Global Ocean(total)" },
+            { y: 59130,  label: "Indian Ocean" },
+            { y: 23150,  label: "Mediterranean sea" },
+            { y: 56470,  label: "North Atlantic" },
+            { y: 96400,  label: "North Pacific" },
+            { y: 12780, label: "South Atlantic" },
+            { y: 21020,  label: "South Pacific" }
+        ]
+    }]
+});
+chart5.render();
+
+
+
+var chart3 = new CanvasJS.Chart("chartContainer3", {
+  theme:"dark2",
+  animationEnabled: true,
+  title:{
+    text: "Plastic mass input from rivers"
+  },
+  axisY :{
+    title: "Plastic mass input from rivers(tonnes)",
+  },
+    axisX :{
+    title: "Years",
+  },
+  toolTip: {
+    shared: "true"
+  },
+  legend:{
+    cursor:"pointer",
+    itemclick : toggleDataSeries
+  },
+  data: [
+        {
+    type: "spline",
+    visible: false,
+    showInLegend: true,
+    name: "South America",
+    dataPoints: [   
+      { x: 2010, y: 5000 },
+      { x: 2011, y: 20000 },
+      { x: 2012, y: 30000 },
+      { x: 2013, y: 45000 },
+      { x: 2014, y: 57000 },
+      { x: 2015, y: 67400 }
+    ]
+  },
+  {
+    type: "spline", 
+    showInLegend: true,
+    visible: false,
+    name: "China",
+    dataPoints: [   
+      { x: 2010, y: 9800 },
+      { x: 2011, y: 50032 },
+      { x: 2012, y: 83455 },
+      { x: 2013, y: 90123 },
+      { x: 2014, y: 101014 },
+      { x: 2015, y: 115000 }
+    ]
+  },
+  {
+    type: "spline",
+    visible: false,
+    showInLegend: true,
+    name: "India",
+    dataPoints: [   
+      { x: 2010, y: 12000 },
+      { x: 2011, y: 70234 },
+      { x: 2012, y: 80500 },
+      { x: 2013, y: 98343 },
+      { x: 2014, y: 110000 },
+      { x: 2015, y: 115000 }
+    ]
+  },
+  {
+    type: "spline", 
+    showInLegend: true,
+    name: "Africa",
+    dataPoints: [   
+      { x: 2010, y: 10000 },
+      { x: 2011, y: 21000 },
+      { x: 2012, y: 60000 },
+      { x: 2013, y: 75000 },
+      { x: 2014, y: 100900 },
+      { x: 2015, y: 109200 }
+    ]
+  }]
+});
+chart3.render();
+
+function toggleDataSeries(e) {
+  if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+    e.dataSeries.visible = false;
+  } else {
+    e.dataSeries.visible = true;
+  }
+  chart3.render();
+}
+
+
+
+
+
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+    theme: "dark2",
+  title: {
+    text: "Primary Production of plastic"
+  },
+  axisY: {
+    title: "Production of Plastic"
+  },
+  data: [{
+    type: "column", 
+    yValueFormatString: "##,###,###",
+    indexLabel: "{y}",
+    dataPoints: [
+      { label: "Additives", y: 25000000 },
+      { label: "All Industrial Sector", y: 40700000 },
+      { label: "Building and Construction", y: 65000000 },
+      { label: "Consumer and Institution", y: 42000000 },
+      { label: "Electrical/Electronics", y: 18000000 },
+      { label: "HDPE", y: 52000000 },
+            { label: "Industrial Machinary", y: 3000000 },
+      { label: "LD/LDPE", y: 64000000 },
+      { label: "Other polymer Sector", y: 16000000 },
+      { label: "Textile", y: 47000000 },
+      { label: "Transportation", y: 27000000 },
+      { label: "PVC", y: 38000000 }
+    ]
+  }]
+});
+
+function updateChart() {
+  var boilerColor, deltaY, yVal;
+  var dps = chart2.options.data[0].dataPoints;
+  for (var i = 0; i < dps.length; i++) {
+    deltaY = Math.round(1000000 + Math.random() *(-2-2));
+    yVal = deltaY + dps[i].y > 0 ? dps[i].y + deltaY : 0;
+    dps[i] = {label: dps[i].label , y: yVal};
+  }
+  chart2.options.data[0].dataPoints = dps; 
+  chart2.render();
+};
+updateChart();
+
+setInterval(function() {updateChart()}, 500);
+
+
+var chart4 = new CanvasJS.Chart("chartContainer4", {
+   theme: "dark2",
+  exportEnabled: true,
+  animationEnabled: true,
+  title:{
+    text: ""
+  },
+  legend:{
+    cursor: "pointer",
+    itemclick: explodePie
+  },
+  data: [{
+    type: "pie",
+    showInLegend: true,
+    toolTipContent: "{name}: <strong>{y}%</strong>",
+    indexLabel: "{name} - {y}%",
+    dataPoints: [
+      { y: 25.7893, name: "China" },
+      { y: 10.7375, name: "Indonasia" },
+      { y: 7.3661, name: "Philippines" },
+      { y: 6.0407, name: "Vietnam" },
+      { y: 4.1711, name: "India" },
+      { y: 3.5916, name: "Nigeria"},
+      { y: 3.1996, name: "Bangladesh" },
+            {y:3.15 , name:"Thailand"},
+            { y: 2.8, name: "Egypt" },
+      { y: 2.77, name: "Sri Lanka" },
+      { y: 2.55, name: "Malayasia" },
+      { y: 1.78, name: "Pakistan" },
+      { y: 1.66, name: "Myanmar" },
+      { y: 1.47, name: "Algeria"},
+      { y: 1.38, name: "Brazil" },
+            { y: 1.21, name: "South Africa" },
+      { y: 1.14, name: "Turkey" },
+      { y: 1.06, name: "Senegal" },
+      { y: 1.02, name: "Morocco" },
+      { y: 0.88, name: "North Korea" },
+      { y: 0.776, name: "Cote d'Ivoire"},
+      { y: 15.0981, name: "Others" }
+    ]
+  }]
+});
+chart4.render();
+}
+
+function explodePie (e) {
+  if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+    e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+  } else {
+    e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+  }
+  e.chart4.render();
+}
+
+
+
+</script>
+
+ 
+
+	<title></title>
+</head>
+<body>
+	<header>
+  <div class="nav_container">
+    <div class="logo-box">
+      <a href="/">
+        <img src="https://cdn2.webdamdb.com/310th_sm_gPgxUVVP3hLE.png?1508505557">
+      </a>
+    </div>
+    <nav>
+    <ul  class="logo_content">
+      <li><a href="#">home</a></li>
+      <li><a href="https://www.coronatracker.com/country/india/">Corona Tracker</a></li>
+      
+      <li><a href="">about</a></li>
+      <li><a href="">Team Menbers</a></li>
+   </ul>
+  </nav>
+  </div>
+</header> 
+
+
+<div class="main_container">
+
+  <h2 id="back_img1"><center>Marine & Ocean Pollution</center></h2>
+  <h1 id="back_img2"><center><strong>Statistics & Facts </strong></center></h>
+ </div>
+
+ <div class="Body_content" style="background-color:#282828">
+   <h1 id="a" style="color: #A9A9A9"><center>Ultimate Roundup of Marine Pollution Facts: The Causes and Impact on both Marine and Human Life.</center></h1>
+
+ <p class="bodi"><strong>The ocean is one of the most unexplored parts of our planet, with a magnitude of undiscovered species and mysteries. It turns out from the studies conducted over the last few decades, this magnificent environment is under serious threat from human intervention, with plastics set to outnumber fish by 2050.</strong></p>
+
+ <p class="bodi">Marine life, as we know it, is suffering irreparable damage from the chemical pollution of the waters and the millions of tons of mismanaged waste dumped in the oceans each year. The result is a planetary crisis with over 100 million marine animal’s lives get lost every year, and the decay of the ocean's ecosystem.</p>
+
+ <p class="bodi">Almost 1,000 species of marine animals get impacted by ocean pollution, and we now have over 500 locations recorded as dead zones where marine life cannot exist. How did this happen, what is causing the most damage, find out everything below in the marine pollution statistics roundup.</p>
+ </div>
+
+
+ <div class="slideshow-container" style="background-color:#282828" style="width: 100%">
+
+<div class="mySlides">
+  <q style="color: white">“I only feel angry when I see waste. When I see people throwing away things we could use.”
+</q>
+  <p class="author">—Mother Teresa </p>
+</div>
+
+<div class="mySlides">
+  <q style="color: white">“One of the first conditions of happiness is that the link between man and nature shall not be broken.”</q>
+  <p class="author">—Leo Tolstoy</p>
+</div>
+
+<div class="mySlides">
+  <q style="color: white">“The environment is where we all meet; where we all have a mutual interest; it is the one thing all of us share.”</q>
+  <p class="author">-Lady Bird Johnson</p>
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+
+<div class="dot-container">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card" style="background-color:#282828">
+      <h2>How do we dispose of our plastic?</h2>
+      <h5>Plastic disposal methods</h5>
+       <div class="fakeimg" style="height:500px;">
+        <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+        </div>
+
+
+      <p>How has global plastic waste disposal method changed over time? In the chart we see the share of global plastic waste that is discarded, recycled or incinerated from 1980 through to 2015.</p>
+      <p>Prior to 1980, recycling and incineration of plastic was negligible; 100 percent was therefore discarded. From 1980 for incineration, and 1990 for recycling, rates increased on average by about 0.7 percent per year.4
+
+In 2015, an estimated 55 percent of global plastic waste was discarded, 25 percent was incinerated, and 20 percent recycled.
+
+If we extrapolate historical trends through to 2050 — as can be seen in the chart here — by 2050, incineration rates would increase to 50 percent; recycling to 44 percent; and discarded waste would fall to 6 percent. However, note that this is based on the simplistic extrapolation of historic trends and does not represent concrete projections.</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>Which sectors produce the most plastic?</h2>
+      <h5>Plastic use by sector</h5>
+      <div class="fakeimg" style="height:500px;">
+
+        <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+      
+       </div>
+      
+      <p></p>
+      <p>To which industries and product uses is primary plastic production allocated? In the chart we see plastic production allocation by sector for 2015.
+
+Packaging was the dominant use of primary plastics, with 42 percent of plastics entering the use phase.6
+
+Building and construction was the second largest sector utilizing 19 percent of the total. Primary plastic production does not directly reflect plastic waste generation (as shown in the next section), since this is also influenced by the polymer type and lifetime of the end product.
+
+Primary plastic production by polymer type can be found here.</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>Total plastic waste by country</h2>
+      
+      <div class="fakeimg" style="height:500px;">
+
+        <img src="totalPlasticGeneration.png">
+    
+      </div>
+      <p>In the chart we see the total plastic waste generation by country, measured in tonnes per year. This therefore takes account of per capita waste generation and population size. This estimate is available only for the year 2010, but as we see later in this entry, the relative global picture is similar in projections to 2025.
+
+With the largest population, China produced the largest quantity of plastic, at nearly 60 million tonnes. This was followed by the United States at 38 million, Germany at 14.5 million and Brazil at 12 million tonnes.
+
+Like the per capita figures above, note that these figures represent total plastic waste generation and do not account for differences in waste management, recycling or incineration. They therefore do not represent quantities of plastic at risk of loss to the ocean or other waterways.
+
+Beyond domestic plastic waste generation, there is also a large global commodity market for recycled plastic waste.</p>
+    </div>
+    
+
+
+<div class="card" style="background-color:#282828">
+      <h2>Mismanaged plastic waste(2015)</h2>
+      <div class="fakeimg" style="height:800px;">
+         <img src="mismanaged_waste_geoChart_in_year_2010.png">
+       
+      </div>
+      <p>Mismanaged waste is material which is at high risk of entering the ocean via wind or tidal transport, or carried to coastlines from inland waterways. Mismanaged waste is the sum of material which is either littered or inadequately disposed. Inadequately disposed and littered waste are different, and are defined in the sections below.</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>Mismanaged plastic waste(2025)</h2>
+      <div class="fakeimg" style="height:500px;">
+         <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+       
+      </div>
+      <p>The data presented in the analysis above is for the year 2010; how is this global picture likely to change over time? Jambeck et al. (2015) also project mismanaged plastic waste production for the year 2025.11
+
+These results are presented in the map as the share of global mismanaged waste by country, and aggregated by region. Absolute figures (in tonnes per year) by country is available to explore here.
+
+Overall we see that the global distribution is projected to change only slightly; whilst China’s contribution falls by a couple of percentage points, East Asia & Pacific maintain around 60 percent of the total. South Asia’s contribution — largely driven by India — increases slightly, as does Sub-Saharan Africa. Latin America, the Middle East & North Africa, Europe and North America all fall in relative terms.12</p>
+    </div>
+
+
+    <div class="card" style="background-color:#282828">
+      <h2>Mismanaged plastic waste(2015)</h2>
+      <div class="fakeimg" style="height:500px;">
+        <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+       
+      </div>
+      <p>In the chart we list the estimated input of plastic to the oceans from the most polluting rivers across the world. This was estimated by Lebreton et al. (2017) for the year 2015.17 They are listed in order with the name of the river, and the countries through which it passes.
+
+The top 20 polluting rivers accounted for two-thirds – 67 percent – of the global annual river input. Geographically we see that the majority of the most polluting rivers are located in Asia. River Yangtze, the top polluting river, had an input of approximately 333,000 tonnes in 2015 — over 4 percent of annual ocean plastic pollution.</p>
+    </div>
+
+    <div class="card" style="background-color:#282828">
+      <h2>Which oceans have the most plastic waste?</h2>
+      
+      <div class="fakeimg" style="height:400px;">
+         <div id="chartContainer5" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+       
+      </div>
+      
+      <p>The distribution and accumulation of ocean plastics is strongly influenced by oceanic surface currents and wind patterns. Plastics are typically buoyant – meaning they float on the ocean surface –, allowing them to be transported by the prevalent wind and surface current routes. As a result, plastics tend to accumulate in oceanic gyres, with high concentrations of plastics at the centre of ocean basins, and much less around the perimeters. After entry to oceans from coastal regions, plastics tend to migrate towards the centre of ocean basins.
+
+In the chart we see estimates of the mass of plastics in surface ocean waters by ocean basin. Eriksen et al. (2014) estimated that there was approximately 269,000 tonnes of plastic in surface waters across the world.18
+
+ Note that this at least an order of magnitude lower than estimated inputs of plastics to the ocean; the discrepancy here relates to a surprising, but long-standing question in the research literature on plastics: “where is the missing plastic going?“.
+
+As we see, basins in the Northern Hemisphere had the highest quantity of plastics. This would be expected since the majority of the world’s population – and in particular, coastal populations – live within the Northern Hemisphere. However, authors were still surprised by the quantity of plastic accumulation in Southern oceans — while it was lower than in the Northern Hemisphere, it was still of the same order of magnitude. Considering the lack of coastal populations and plastic inputs in the Southern Hemisphere, this was an unexpected result. The authors suggest this means plastic pollution can be moved between oceanic gyres and basins much more readily than previously assumed.</p>
+    </div>
+  </div>
+
+  <div class="rightcolumn">
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">100 million marine animals die each year from plastic waste alone. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">100,000 marine animals die from getting entangled in plastic yearly – this is just the creatures we find!</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">1 in 3 marine mammal species get found entangled in litter, 12-14,000 tons of plastic are ingested by North Pacific fish yearly. </p>
+    </div>
+
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Knowe</h2>
+      
+      <p class="do_you">In the past 10 years, we’ve made more plastic than the last century. By 2050, the pollution of fish will be outnumbered by our dumped plastic. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Knowe</h2>
+      
+      <p class="do_you">The largest trash site on the planet is the Great Pacific Garbage Patch, twice the surface area of Texas, it outnumbers sea life there 6 to 1. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">China is ranked #1 for mismanaged waste and plastics. However, the US is in the top 20 with a more significant waste per person contributions. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">300 Million tons of plastic gets created yearly, and this weighs the same as the entire human population, and 50% is single-use only. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">There are 5.25 trillion pieces of plastic waste estimated to be in our oceans. 269,000 tons float, 4 billion microfibers per km² dwell below the surface.</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+     
+      <p class="do_you">70% of our debris sinks into the ocean's ecosystem, 15% floats, and 15% lands on our beaches</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+     
+      <p class="do_you">In terms of plastic, 8.3 million tons are discarded in the sea yearly. Of which, 236,000 are ingestible microplastics that marine creatures mistake for food. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">Plastics take 500-1000 years to degrade; currently 79% is sent to landfills or the ocean, while only 9% is recycled, and 12% gets incinerated. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+     
+      <p class="do_you">1950-1998 over 100 nuclear blast tests occurred in our oceans. </p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+     
+      <p class="do_you">500 marine locations are now recorded as dead zones globally, currently the size of the United Kingdom’s surface (245,000 km²)</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">80% of global marine pollution comes from agriculture runoff, untreated sewage, discharge of nutrients and pesticides.</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p class="do_you">90% of the worldwide ocean debris comes from 10 rivers alone</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+     
+      <p class="do_you">90% of the worldwide ocean debris comes from 10 rivers alone</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      <p class="do_you">The largest trash site on the planet is the Great Pacific Garbage Patch, located in The North Pacific Subtropical Gyre</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2>DO You Know</h2>
+      
+      <p  class="do_you">The marine garbage patch is twice the surface area of Texas it outnumbers sea life there 6 to 1.</p>
+    </div>
+    <div class="card" style="background-color:#282828">
+      <h2 >DO You Know</h2>
+     
+      <p class="do_you">80% of the Great Pacific Garbage Patch is made up of debris from Asia and North America.</p>
+    </div>
+    
+    
+  </div>
+</div>
+
+<div class="footer">
+  <h2></h2>
+</div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="about-section">
+    <div class="'aks">
+  <h1>About Us Page</h1>
+  <p>The page is about marine pollution</p>
+</div>
+</div>
+
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card" style="background-color:#282828">
+      
+      <div class="container">
+        <h2>Abhishek Kumar</h2>
+        
+        <p>Some text that describes me lorem ipsum ipsum lorem</p>
+        <p>abhishek98396@gmail.com.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card" style="background-color:#282828">
+     <div class="container">
+        <h2>Harshit Goel</h2>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>harshit@.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card" style="background-color:#282828">
+      <div class="container">
+        <h2>Shidhartha</h2>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>sidharth@.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</body>
+</html>
