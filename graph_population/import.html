@@ -4,17 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Coding Train: Data and APIs Project 1</title>
+    <title>Import-Export</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
-  <body  style="padding: 0px 60px">
-    <h1 style="background-color:rgb(253, 208, 253); text-align: center; padding:10px ">Supply per Capita</h1>
-    <select id="select" onchange="setup()" style="color:black; background-color: rgb(240,240,240); margin:20px; align-self: center; padding:10px 20px; border:0px; border-radius: 30px; font-size: 20px; ">
+  <body>
+    <h1>Population</h1>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <select id="select" onchange="setup()">
       <option value="default">Afghanistan</option>
     </select>
-    <div style="height: 500px; width: 900px">
-    <canvas id="myChart" width="400" height="200">
-    
     <script>
       function addoptions(filteredArray){
         var e = document.getElementById("select");
@@ -37,29 +35,38 @@
         var e = document.getElementById("select");
         var value = e.options[e.selectedIndex].value;
         var text = e.options[e.selectedIndex].text;
-        const globalTemps = await getData(text);
+        const globalTemps = await getData1(text);
+        // const globalexp = await getData2(text);
         const myChart = new Chart(ctx, {
-          type: 'line',
+          type: 'bar',
           data: {
             labels: globalTemps.years,
             datasets: [
               {
-                label: 'Supply of eggs per capita',
+                label: 'Imports',
                 data: globalTemps.temps,
                 fill: false,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderWidth: 1
-              }
+              },
+              // {
+              //   label: 'Exports',
+              //   data: globalexp.temps,
+              //   fill: false,
+              //   borderColor: 'rgba(255, 99, 132, 1)',
+              //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
+              //   borderWidth: 1
+              // }
             ]
           },
           options: {}
         });
       }
 
-      async function getData(text) {
+      async function getData1(text) {
         // const response = await fetch('testdata.csv');
-        const response = await fetch('supply_tonnes_protein.csv');
+        const response = await fetch('import_data.csv');
         const data = await response.text();
         const years = [];
         const temps = [];
@@ -70,9 +77,11 @@
         rows.forEach(row => {
           const cols = row.split(',');
           // alert(cols[2]);
-          if(cols[1]>1990 && cols[1]<2020 && cols[0].trim() == text.trim()){
-            years.push(cols[1]);
-            temps.push(parseFloat(cols[2]/100));
+          if(cols[1]>1999 && cols[1]<2014 && cols[0].trim() == text.trim()){
+                  if(years[1]!=cols[1]){
+                    years.push(cols[1]);
+              }
+            temps.push(parseFloat(cols[2]));
           } 
           countries.push(cols[0]); 
         });
@@ -80,12 +89,11 @@
         var filteredArray = countries.filter(function(item, pos){
         return countries.indexOf(item)== pos; 
       });
+      console.log(filteredArray);
        addoptions(filteredArray); 
         return { years, temps };
        
       }
     </script>
-        </canvas>
-      </div>
   </body>
 </html>
